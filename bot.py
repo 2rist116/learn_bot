@@ -23,41 +23,7 @@ def ephem_planet(update, context):
         const = ephem.constellation(planets[planet_text3])
         print(const)
         update.message.reply_text(const)
-    # if planet_text2[1]=='Mars':
-    #     planet = ephem.Mars('2022/05/18')
-    #     const = ephem.constellation(planet)
-    #     print(const)
-    #     update.message.reply_text(const)
-    # elif planet_text2[1]=='Jupiter':
-    #     planet = ephem.Jupiter('2022/05/18')  
-    #     const = ephem.constellation(planet)
-    #     print(const)
-    #     update.message.reply_text(const)
-    # elif planet_text2[1]=='Saturn':
-    #     planet = ephem.Saturn('2022/05/18')  
-    #     const = ephem.constellation(planet)
-    #     print(const)
-    #     update.message.reply_text(const)
-    # elif planet_text2[1]=='Mercury':
-    #     planet = ephem.Mercury('2022/05/18')  
-    #     const = ephem.constellation(planet)
-    #     print(const)
-    #     update.message.reply_text(const)
-    # elif planet_text2[1]=='Venus':
-    #     planet = ephem.Venus('2022/05/18')  
-    #     const = ephem.constellation(planet)
-    #     print(const)
-    #     update.message.reply_text(const)
-    # elif planet_text2[1]=='Uranus':
-    #     planet = ephem.Uranus('2022/05/18')  
-    #     const = ephem.constellation(planet)
-    #     print(const)
-    #     update.message.reply_text(const)
-    # elif planet_text2[1]=='Neptune':
-    #     planet = ephem.Neptune('2022/05/18')  
-    #     const = ephem.constellation(planet)
-    #     print(const)
-    #     update.message.reply_text(const)
+
 
 def greet_user(update, context):
     print('Вызван /start')
