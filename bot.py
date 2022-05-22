@@ -1,8 +1,63 @@
 import logging
+import ephem
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 import settings
 
 logging.basicConfig(filename='bot.log', level=logging.INFO)
+
+def ephem_planet(update, context):
+    planets = {'Mars': ephem.Mars('2022/05/18'), 
+               'Jupiter': ephem.Jupiter('2022/05/18'),
+               'Saturn': ephem.Saturn('2022/05/18'),
+               'Mercury': ephem.Mercury('2022/05/18'),
+               'Venus': ephem.Venus('2022/05/18'),
+               'Uranus': ephem.Uranus('2022/05/18'),
+               'Neptune': ephem.Neptune('2022/05/18')
+               }
+
+    planet_text = update.message.text
+    planet_text2 = planet_text.split()
+    planet_text3 = planet_text2[1]
+    print(planet_text3)
+    if planet_text3 in planets:
+        const = ephem.constellation(planets[planet_text3])
+        print(const)
+        update.message.reply_text(const)
+    # if planet_text2[1]=='Mars':
+    #     planet = ephem.Mars('2022/05/18')
+    #     const = ephem.constellation(planet)
+    #     print(const)
+    #     update.message.reply_text(const)
+    # elif planet_text2[1]=='Jupiter':
+    #     planet = ephem.Jupiter('2022/05/18')  
+    #     const = ephem.constellation(planet)
+    #     print(const)
+    #     update.message.reply_text(const)
+    # elif planet_text2[1]=='Saturn':
+    #     planet = ephem.Saturn('2022/05/18')  
+    #     const = ephem.constellation(planet)
+    #     print(const)
+    #     update.message.reply_text(const)
+    # elif planet_text2[1]=='Mercury':
+    #     planet = ephem.Mercury('2022/05/18')  
+    #     const = ephem.constellation(planet)
+    #     print(const)
+    #     update.message.reply_text(const)
+    # elif planet_text2[1]=='Venus':
+    #     planet = ephem.Venus('2022/05/18')  
+    #     const = ephem.constellation(planet)
+    #     print(const)
+    #     update.message.reply_text(const)
+    # elif planet_text2[1]=='Uranus':
+    #     planet = ephem.Uranus('2022/05/18')  
+    #     const = ephem.constellation(planet)
+    #     print(const)
+    #     update.message.reply_text(const)
+    # elif planet_text2[1]=='Neptune':
+    #     planet = ephem.Neptune('2022/05/18')  
+    #     const = ephem.constellation(planet)
+    #     print(const)
+    #     update.message.reply_text(const)
 
 def greet_user(update, context):
     print('Вызван /start')
@@ -18,6 +73,7 @@ def main():
     
     dp = mybot.dispatcher
     dp.add_handler(CommandHandler('start', greet_user))
+    dp.add_handler(CommandHandler("planet", ephem_planet))
     dp.add_handler(MessageHandler(Filters.text, talk_to_me))
     
     logging.info('Bot started')
